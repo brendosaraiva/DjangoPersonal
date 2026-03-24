@@ -163,16 +163,17 @@ def imc(request):
         peso = request.POST.get("peso")
         tipo_corporal = request.POST.get("tipo_corporal")
         situacao = request.POST.get("situacao")
+        redes_sociais = RedesSociais.objects.all()
 
         if altura and peso and tipo_corporal and situacao:
             # Cria ou atualiza os dados de BiotipoUsuario ligado ao usuário logado
             biotipo, created = BiotipoUsuario.objects.update_or_create(
                 usuario=request.user,
                 defaults={
-                    'altura': altura,
-                    'peso': peso,
-                    'tipo_corporal': tipo_corporal,
-                    'situacao': situacao,
+                    "altura": altura,
+                    "peso": peso,
+                    "tipo_corporal": tipo_corporal,
+                    "situacao": situacao,
                 }
             )
             messages.success(request, "Dados físicos cadastrados com sucesso!", extra_tags="imc")
@@ -181,8 +182,9 @@ def imc(request):
             messages.error(request, "Todos os campos são obrigatórios!")
 
     context = {
-        'TIPO_CORPO': BiotipoUsuario.TIPO_CORPO,
-        'SITUACAO': BiotipoUsuario.SITUACAO,
+        "TIPO_CORPO": BiotipoUsuario.TIPO_CORPO,
+        "SITUACAO": BiotipoUsuario.SITUACAO,
+        "redes_sociais": redes_sociais
     }
     return render(request, "imc.html", context)
 

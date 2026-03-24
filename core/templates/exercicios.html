@@ -21,13 +21,11 @@
     <!-- Top Social Begin -->
     <div class="top-social">
         <div class="top-social-links">
-            <ul>
-                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-            </ul>
+            {% for rede_social in redes_sociais %}
+                <ul>
+                    <li style="padding: 10px;"><a href="{{ rede_social.rede_social }}"><i class="{{ rede_social.icone }}"></i></a></li>
+                </ul>
+            {% endfor %}
         </div>
     </div>
     <!-- Top Social End -->
