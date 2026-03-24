@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+
+<div class="error-container-server">
+  <div class="lottie-animation"></div>
+  <div class="error-content">
+    <h1>500</h1>
+    <p>Oops! Algum erro aconteceu no servidor. Contate o administrador!</p>
+    <a href="{% url 'index' %}" class="btn btn-primary btn-personalizado-servidor">Voltar</a>
+  </div>
+</div>
+{% endblock %}

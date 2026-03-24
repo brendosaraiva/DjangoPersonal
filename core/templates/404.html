@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+
+<div class="error-container">
+  <div class="lottie-animation"></div>
+  <div class="error-content">
+    <h1>404</h1>
+    <p>Oops! A página que você está procurando não existe.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary btn-personalizado">Voltar</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+    <!-- Search Bar Begin -->
+    <section class="search-bar-wrap">
+        <span class="search-close"><i class="fa fa-close"></i></span>
+        <div class="search-bar-table">
+            <div class="search-bar-tablecell">
+                <div class="search-bar-inner">
+                    <h2>Search</h2>
+                    <form action="#">
+                        <input type="search" placeholder="Type Keywords">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Search Bar End -->
+    <!-- Top Social Begin -->
+    <div class="top-social">
+        <div class="top-social-links">
+            {% for rede_social in redes_sociais %}
+                <ul>
+                    <li style="padding: 10px;"><a href="{{ rede_social.rede_social }}"><i class="{{ rede_social.icone }}"></i></a></li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Top Social End -->
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-area set-bg" data-setbg="{% static 'contact/contact-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-content">
+                        <h2 style="color: black;">Contato</h2>
+                        <div class="links">
+                            <a href="{% url 'index' %}">Home</a>
+                            <a href="{% url 'contato' %}" class="rt-breadcrumb">Contato</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <!-- Contact Section Begin -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <div class="contact-details">
+                            <h2>Entre em contato</h2>
+                            <p>Deixe-nos uma mensagem, seja de apoio, agradecimento ou até mesmo para podermos melhorar
+                            <ul class="address">
+                                {% for contato in contatos %}
+                                    <li><strong>Endereço: </strong>{{ contato.endereco }}</li>
+                                    <li><strong>Telefone: </strong>{{ contato.telefone.national_number }}</li>
+                                    <li><strong>E-mail: </strong>{{ contato.email }}</li>
+                                {% empty %}
+                                    <li>Informações de contato indisponíveis.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="contact-form">
+                            <form action="{% url 'contato' %}" method="post" class="formulario" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        {% bootstrap_field formulario.nome show_label=False placeholder="Seu Nome" %}
+                                    </div>
+                                    <div class="col-lg-6">
+                                        {% bootstrap_field formulario.email show_label=False placeholder="Seu E-mail" %}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        {% bootstrap_field formulario.assunto show_label=False placeholder="Assunto" %}
+                                        {% bootstrap_field formulario.mensagem show_label=False placeholder="Sua Mensagem" %}
+                                        <button type="submit" class="site-btn">Enviar mensagem</button>
+                                    </div>
+                                </div>
+                                {% if messages %}
+                                    <div class="mt-3">
+                                        {% for message in messages %}
+                                            {% if "contato" in message.tags %}
+                                                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                                                    {{ message }}
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% bootstrap_javascript jquery='full' %}
+        </div>
+        {% for localizacao in localizacoes %}
+            <div class="map"><iframe
+                    src="{{ localizacao.link }}"
+                    style="border:0" allowfullscreen></iframe>
+            </div>
+        {% endfor %}
+    </section>
+    <!-- Contact Section End -->
+{% endblock %}

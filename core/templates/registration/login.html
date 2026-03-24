@@ -1,0 +1,54 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    {% bootstrap_css %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/django-personal-icon.png' %}">
+
+    <title>Entre ou cadastre-se no site</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+
+  </head>
+
+  <body class="text-center">
+    <form method="post" class="form-signin" style="width: 300px; margin: 0 auto;">
+      {% csrf_token %}
+      {% buttons %}
+      <img class="mb-4" src="{% static 'images/django-personal-icon.png' %}" style="width: 150px; margin: 0 auto;">
+      <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
+      <label for="username" class="sr-only"><br>E-mail</label>
+      <input type="email" id="username" name="username" class="form-control" placeholder="Seu email" required autofocus>
+      <label for="password" class="sr-only"><br>Senha</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Lembrar-me
+        </label>
+      </div>
+      <!-- preparar uma lógica de verificação de conta para verificar se está logado -->
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <a href="{% url 'cadastro' %}"><button class="btn btn-cadastrar" type="button">Cadastrar</button></a>
+      <p class="mt-5 mb-3 text-muted">&copy; Brendo Saraiva 2025</p>
+      {% endbuttons %}
+      {% if messages %}
+          {% for message in messages %}
+            {% if 'login_view' in message.tags %}
+              <div class="alert alert-success">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">×</button>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    </form>
+  {% bootstrap_javascript jquery="full" %}
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

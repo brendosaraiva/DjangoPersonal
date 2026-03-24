@@ -1,0 +1,9 @@
+# Arquivo de settings.py #
+Será necessário que tenha o seu próprio arquivo de settings.py,
+por motivos de segurança, pois cada projeto vem com uma secretkey
+que não deve ser compartilhada com ninguém.
+
+# settings.py file #
+It is necessary to have your own settings.py file for security
+reasons, since each project comes with a secret key that should
+not be shared with anyone.

@@ -1,0 +1,107 @@
+/* Reset e base */
+body, html {
+  background: url("/static/images/gym.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #c5f5c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(100px);
+ }
+
+/* Formulário */
+.form-signin {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  max-heigth: 400px;
+  backdrop-filter: blur(5px);
+}
+
+/* Título */
+.form-signin h1 {
+  color: #00ff00;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #00ff00;
+  font-weight: bold;
+}
+
+/* Inputs */
+.form-control {
+  background-color: #111;
+  border: 1px solid #00ff00;
+  color: #baffba;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 12px #00ff00;
+  background-color: #000;
+  outline: none;
+}
+
+/* Checkbox */
+.checkbox label {
+  color: #8aff8a;
+  font-size: 0.9rem;
+}
+
+/* Botão */
+.btn-primary {
+  background-color: #00ff00;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00ff00;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00ff00;
+  box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+  transform: scale(1.03);
+}
+
+.btn-cadastrar {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 12px #fff;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-cadastrar:hover {
+  background-color: #fff;
+  box-shadow: 0 0 20px #fff, 0 0 30px #fff;
+  transform: scale(1.03);
+}
+
+
+/* Rodapé */
+.text-muted {
+  color: #555 !important;
+  font-size: 0.8rem;
+}
+
+/* Imagem topo */
+img.mb-4 {
+  filter: drop-shadow(0 0 10px #00ff00);
+}

@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+    <!-- Search Bar Begin -->
+    <section class="search-bar-wrap">
+        <span class="search-close"><i class="fa fa-close"></i></span>
+        <div class="search-bar-table">
+            <div class="search-bar-tablecell">
+                <div class="search-bar-inner">
+                    <h2>Search</h2>
+                    <form action="#">
+                        <input type="search" placeholder="Type Keywords">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Search Bar End -->
+    <!-- Top Social Begin -->
+    <div class="top-social">
+        <div class="top-social-links">
+            {% for rede_social in redes_sociais %}
+                <ul>
+                    <li style="padding: 10px;"><a href="{{ rede_social.rede_social }}"><i class="{{ rede_social.icone }}"></i></a></li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Top Social End -->
+    <!-- Hero Slider Section Begin -->
+    <section class="hero-slider">
+        <div class="slide-items owl-carousel">
+            {% for aquecimento in aquecimentos %}
+                <div class="single-slide set-bg active" data-setbg="{{ aquecimento.imagem.thumb.url }}">
+                    <a href="{{ aquecimento.link }}" class="play-btn pop-up"><i class="fa fa-play"></i></a>
+                    <h1>{{ aquecimento.nome }}</h1>
+                    <a href="{{ aquecimento.link }}" class="primary-btn">Assistir</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Hero Slider End -->
+    <!-- Training Section Begin -->
+    {% if request.user.is_authenticated %}
+        {% if dados_cadastrados == True and dados_cadastrados_biotipo == True %}
+            <section id="treino" class="features-section spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="section-title">
+                                <span style="color: green;">Plano de</span>
+                                <h2 style="color: black;">Treino</h2>
+                            </div>
+                        </div>
+                        {% for exercicio in exercicios %}
+                            <!-- Checa se o usuário já pratica atividades físicas -->
+                            <!-- Check if user practice physics activities yet -->
+                            <div class="col-3">
+                                <div class="single-features">
+                                    <div class="features-img">
+                                        <img src="{{ exercicio.imagem.thumb.url }}" alt="{{ exercicio.imagem }}">
+                                    </div>
+                                    <div class="feature-text">
+                                        <h5>{{ exercicio.nome }}</h5>
+                                        <p>{{ exercicio.objetivo }}</p>
+                                        <p><b>Repetições (ou tempo): {{ exercicio.repeticoes_ou_tempo }}</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        {% else %}
+            <div class="biotipo-cadastro">
+                <div class="single-features">
+                    <div class="features-img">
+                        <div class="member-sign-up set-bg" data-setbg="{% static 'images/imc-background.png' %}">
+                            <div class="up-title">
+                                <span>Cadastre</span>
+                                <h5>Sua altura e peso para obter IMC</h5>
+                            </div>
+                            <p>Manter o controle do seu peso e da sua altura é essencial para acompanhar sua evolução e cuidar melhor da sua saúde. Ao cadastrar esses dados, você consegue calcular o IMC (Índice de Massa Corporal), um indicador importante que ajuda a entender se seu peso está adequado para sua estatura.
+                               O IMC não define tudo sobre sua saúde, mas serve como um ponto de partida para avaliar riscos e estabelecer metas mais conscientes. Ao registrar suas informações corretamente, você passa a ter uma visão mais clara do seu progresso, podendo ajustar treinos e hábitos alimentares de forma mais estratégica e segura.</p>
+                            <div class="member-signup-btn">
+                                <a href="{% url 'imc' %}" class="primary-btn">Calcular IMC</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <section id="visitantes" class="features-section spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <span style="color: green;">Plano de</span>
+                            <h2 style="color: black;">Treino</h2>
+                        </div>
+                    </div>
+                    {% for visitante in visitantes %}
+                        <div class="col-md-4">
+                            <div class="single-features">
+                                <div class="features-img">
+                                    <img src="{{ visitante.imagem.thumb.url }}" alt="{{ visitante.imagem }}">
+                                </div>
+                                <div class="feature-text">
+                                    <div class="feature-icon">
+                                        <img src="{{ visitante.icone.thumb.url }}" alt="{{ visitante.icone }}">
+                                    </div>
+                                    <h5>{{ visitante.titulo }}</h5>
+                                    <p>{{ visitante.descricao }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+     </section>
+    <!-- Training Section End -->
+    <!-- Diet Section Begin -->
+    {% if request.user.is_authenticated %}
+        {% if dados_cadastrados == True and dados_cadastrados_biotipo == True %}
+            <section id="dieta" class="features-section spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="section-title">
+                                <span style="color: green;">Plano de</span>
+                                <h2 style="color: black;">Dieta</h2>
+                            </div>
+                        </div>
+                        {% for alimento in alimentacao %}
+                            <div class="col-3">
+                                <div class="single-features">
+                                    <div class="features-img">
+                                        <img src="{{ alimento.imagem.thumb.url }}" alt="{{ alimento.imagem }}">
+                                    </div>
+                                    <div class="feature-text">
+                                        <h5>{{ alimento.prato }}</h5>
+                                        <p>{{ alimento.descricao }}</p>
+                                        <p><b>Tamanho prato: </b>{{ alimento.tamanho_prato }} | <b>Calorias: </b>{{ alimento.calorias }} kcal | <b>Peso: </b>{{ alimento.peso }} g</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif%}
+    {% endif%}
+    <!-- Diet Section End -->
+    <!-- Services Section Begin -->
+    <section class="services-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Melhorias</span>
+                        <h2>Serviços</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for servico in servicos %}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-service">
+                            <img src="{{ servico.imagem.thumb.url }}" alt="{{ servico.imagem }}">
+                            <h5>{{ servico.titulo }}</h5>
+                            <p>{{ servico.descricao }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+    <!-- Trainer Section Begin -->
+    <section class="trainer-section set-bg" data-setbg="{% static 'images/trainer-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Os Melhores</span>
+                        <h2>Treinos</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for objetivo in objetivos %}
+                    <div class="col-md-4">
+                        <div class="single-trainer">
+                            <div class="trainer-img">
+                                <img src="{{ objetivo.imagem.thumb.url }}" alt="{{ objetivo.imagem }}">
+                            </div>
+                            <div class="trainer-text">
+                                <h5>{{ objetivo.titulo }}<span>{{ objetivo.descricao }}</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Traniner Section End -->
+    <!-- Upcoming Event Begin -->
+    <section class="upcoming-event-section spad-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="upcoming-classes">
+                        <div class="up-title">
+                            <span>Eleve</span>
+                            <h5>Sua classe de treino</h5>
+                        </div>
+                        {% for tipo_de_treino in tipos_de_treinos %}
+                            <ul class="classes-time">
+                                <li><img src="{{ tipo_de_treino.imagem.thumb.url }}" alt="{{ tipo_de_treino.imagem }}">{{ tipo_de_treino.treino }}<span>{{ tipo_de_treino.repeticoes_ou_tempo_min }} - {{ tipo_de_treino.repeticoes_ou_tempo_max }}</span></li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="membership-card set-bg" data-setbg="{% static 'images/django-unicorn-centaur-gym.jpg' %}">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="member-sign-up set-bg" data-setbg="{% static 'images/signup-bg.jpg' %}">
+                        <div class="up-title">
+                            <span>Treine</span>
+                            <h5>Em casa e obtenha resultados</h5>
+                        </div>
+                        <p>Treinar em casa usando apenas o peso do próprio corpo é uma forma prática, eficiente e acessível de manter a saúde em dia. Exercícios como flexões, agachamentos, abdominais e pranchas trabalham vários grupos musculares ao mesmo tempo, melhorando força, resistência e coordenação motora.</p>
+                        <div class="member-signup-btn">
+                            <a href="#treino" class="primary-btn">Começar treino?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Upcoming Event End -->
+{% endblock %}

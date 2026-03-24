@@ -1,0 +1,48 @@
+.cadastro-section {
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+  padding-top: 200px;
+}
+
+.cadastro-section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-align: center;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+.cadastro-section label {
+  display: block;
+  padding-top: 15px;
+  color: #555555;
+}
+
+.cadastro-section input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.cadastro-section button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  background-color: #39ff14; /* verde neon */
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-section button:hover {
+  background-color: #2ecc12; /* verde neon escuro ao passar o mouse */
+}
